@@ -19,7 +19,7 @@ public class SecondClass
         name = name + "asdahdhsaa";
     }
 
-    @Test
+
     public void method1(String param)
     {
         number = number + 1;

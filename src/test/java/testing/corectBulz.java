@@ -2,7 +2,7 @@ package testing;
 
 import org.testng.annotations.Test;
 
-public class SecondClass
+public class corectBulz
 {
     int number = 1;
     char character = 'a';
@@ -73,6 +73,32 @@ public class SecondClass
     {
         showBoltz(22);
     }
+
+
+   // public class CorectBultz {
+
+   //     @Test
+
+   //     public void methodBoltComplete() {
+
+   //         while (nr < limit) {
+   //             nr++;
+   //             //str = Integer.toString(nr);
+   //             String str = Integer.toString(nr);
+   //             int lastch = parseInt(String.valueOf(str.charAt(str.length() - 1)));
+   //             if (lastch == 7) {
+    //                System.out.println("BOLTZ ends in 7");
+    //            } else if (nr % 7 == 0) {
+    //                System.out.println("BOLTZ divisible by 7");
+    //            } else {
+    //                System.out.println(nr);
+    //            }
+
+    //        }
+    //    }
+    //}
+
+
 
 
 }

@@ -52,6 +52,7 @@ public class SecondClass
         }
     }
 
+    @Test
     private void showBoltz(int max)
     {
         for(int i=1; i<max; i++)
@@ -70,7 +71,7 @@ public class SecondClass
     @Test
     public void showBoltz()
     {
-        showBoltz(280);
+        showBoltz(22);
     }
 
 

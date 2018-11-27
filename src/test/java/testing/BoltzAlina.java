@@ -62,7 +62,7 @@ public class BoltzAlina {
     @Test
 
     public void methodBoltPlayer() {
-        String[] arrPlayer = {"Mary1", "John2", "Tim3", "Nelu4", "Carmen5"};
+        String[] arrPlayer = {"Mary11111", "John2", "Tim3", "Nelu4", "Carmen5"};
         int times = 0;
         while (times < 100) {
             for (int index = 0; index < arrPlayer.length; index++) {

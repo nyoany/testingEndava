@@ -14,6 +14,7 @@ public class TestMessageBuilder {
     @Test
     public void testNumber10() {
         assertEquals(10, MessageBuilder.getNumber10());
+        System.out.print(10);
     }
 
 }

@@ -1,0 +1,264 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="test-parameter">
+
+    <test name="example1">
+
+        <parameter name="dbconfig" value="db.properties" />
+        <parameter name="poolsize" value="10" />
+
+        <classes>
+            <class name="parameter.TestParameterXML" />
+        </classes>
+
+    </test>
+
+</suite>
+
+output:
+
+        Copy
+
+
+        2. Passing Parameters with @DataProvider
+        2.1 Review a simple @DataProvider example, passing a int parameter.
+
+        TestParameterDataProvider.java
+        package com.mkyong.testng.examples.parameter;
+
+        import org.testng.Assert;
+        import org.testng.annotations.DataProvider;
+        import org.testng.annotations.Test;
+
+        public class TestParameterDataProvider {
+
+        @Test(dataProvider = "provideNumbers")
+        public void test(int number, int expected) {
+        Assert.assertEquals(number + 10, expected);
+        }
+
+        @DataProvider(name = "provideNumbers")
+        public Object[][] provideData() {
+
+        return new Object[][] {
+        { 10, 20 },
+        { 100, 110 },
+        { 200, 210 }
+        };
+        }
+
+        }
+        Output
+
+        PASSED: test(10, 20)
+        PASSED: test(100, 110)
+        PASSED: test(200, 210)
+        Copy
+        2.2 The @DataProvider is support passing an object parameter. Below example shows you how to pass a Map object as parameter.
+
+        TestParameterDataProvider.java
+        package com.mkyong.testng.examples.parameter;
+
+        import java.io.IOException;
+        import java.io.InputStream;
+        import java.util.HashMap;
+        import java.util.Map;
+        import java.util.Properties;
+
+        import org.testng.Assert;
+        import org.testng.annotations.DataProvider;
+        import org.testng.annotations.Test;
+
+        public class TestParameterDataProvider {
+
+        @Test(dataProvider = "dbconfig")
+        public void testConnection(Map<String, String> map) {
+
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+        System.out.println("[Key] : " + entry.getKey()
+        + " [Value] : " + entry.getValue());
+        }
+
+        }
+
+        @DataProvider(name = "dbconfig")
+        public Object[][] provideDbConfig() {
+        Map<String, String> map = readDbConfig();
+        return new Object[][] { { map } };
+        }
+
+        public Map<String, String> readDbConfig() {
+
+        Properties prop = new Properties();
+        InputStream input = null;
+        Map<String, String> map = new HashMap<String, String>();
+
+        try {
+        input = getClass().getClassLoader().getResourceAsStream("db.properties");
+
+        prop.load(input);
+
+        map.put("jdbc.driver", prop.getProperty("jdbc.driver"));
+        map.put("jdbc.url", prop.getProperty("jdbc.url"));
+        map.put("jdbc.username", prop.getProperty("jdbc.username"));
+        map.put("jdbc.password", prop.getProperty("jdbc.password"));
+
+        } catch (Exception e) {
+        e.printStackTrace();
+        } finally {
+        if (input != null) {
+        try {
+        input.close();
+        } catch (IOException e) {
+        e.printStackTrace();
+        }
+        }
+        }
+
+        return map;
+
+        }
+
+        }
+        Copy
+        Output
+
+        [Key] : jdbc.url [Value] : jdbc:mysql://localhost:3306/mkyongserver
+        [Key] : jdbc.username [Value] : mkyong
+        [Key] : jdbc.driver [Value] : com.mysql.jdbc.Driver
+        [Key] : jdbc.password [Value] : password
+        PASSED: testConnection({jdbc.url=jdbc:mysql://localhost:3306/mkyongserver,
+        jdbc.username=mkyong, jdbc.driver=com.mysql.jdbc.Driver, jdbc.password=password})
+        Copy
+
+
+        3. @DataProvider + Method
+        This example shows you how to pass a different parameters depending on the test method name.
+
+        TestParameterDataProvider.java
+        package com.mkyong.testng.examples.parameter;
+
+        import java.lang.reflect.Method;
+        import org.testng.Assert;
+        import org.testng.annotations.DataProvider;
+        import org.testng.annotations.Test;
+
+        public class TestParameterDataProvider {
+
+        @Test(dataProvider = "dataProvider")
+        public void test1(int number, int expected) {
+        Assert.assertEquals(number, expected);
+        }
+
+        @Test(dataProvider = "dataProvider")
+        public void test2(String email, String expected) {
+        Assert.assertEquals(email, expected);
+        }
+
+        @DataProvider(name = "dataProvider")
+        public Object[][] provideData(Method method) {
+
+        Object[][] result = null;
+
+        if (method.getName().equals("test1")) {
+        result = new Object[][] {
+        { 1, 1 }, { 200, 200 }
+        };
+        } else if (method.getName().equals("test2")) {
+        result = new Object[][] {
+        { "test@gmail.com", "test@gmail.com" },
+        { "test@yahoo.com", "test@yahoo.com" }
+        };
+        }
+
+        return result;
+
+        }
+
+        }
+        Copy
+        Output
+
+        PASSED: test1(1, 1)
+        PASSED: test1(200, 200)
+        PASSED: test2("test@gmail.com", "test@gmail.com")
+        PASSED: test2("test@yahoo.com", "test@yahoo.com")
+        Copy
+        4. @DataProvider + ITestContext
+        In TestNG, we can use org.testng.ITestContext to determine what runtime parameters the current test method was invoked with. In this last example, we will show you how to pass parameters depending on the included group name.
+
+        TestParameterDataProvider.java
+        package com.mkyong.testng.examples.parameter;
+
+        import org.testng.Assert;
+        import org.testng.ITestContext;
+        import org.testng.annotations.DataProvider;
+        import org.testng.annotations.Test;
+
+        public class TestParameterDataProvider {
+
+        @Test(dataProvider = "dataProvider", groups = {"groupA"})
+        public void test1(int number) {
+        Assert.assertEquals(number, 1);
+        }
+
+        @Test(dataProvider = "dataProvider", groups = "groupB")
+        public void test2(int number) {
+        Assert.assertEquals(number, 2);
+        }
+
+        @DataProvider(name = "dataProvider")
+        public Object[][] provideData(ITestContext context) {
+
+        Object[][] result = null;
+
+        //get test name
+        //System.out.println(context.getName());
+
+        for (String group : context.getIncludedGroups()) {
+
+        System.out.println("group : " + group);
+
+        if ("groupA".equals(group)) {
+        result = new Object[][] { { 1 } };
+        break;
+        }
+
+        }
+
+        if (result == null) {
+        result = new Object[][] { { 2 } };
+        }
+        return result;
+
+        }
+
+        }
+        Copy
+        testng.xml
+        <!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="test-parameter">
+
+<test name="example1">
+
+    <groups>
+        <run>
+            <include name="groupA" />
+        </run>
+    </groups>
+
+    <classes>
+        <class
+                name="com.mkyong.testng.examples.parameter.TestParameterDataProvider" />
+    </classes>
+
+</test>
+
+</suite>
+
+<!--output:-->
+        <!--dbconfig : db.properties-->
+        <!--poolsize : 10-->
+        <!--drivers : com.mysql.jdbc.Driver-->
+        <!--connectionURL : jdbc:mysql://localhost:3306/mkyongserver-->
+        <!--username : mkyong-->
+        <!--password : password-->

@@ -2,7 +2,7 @@ package timeout;
 import org.testng.annotations.Test;
 
 public class TestTimeout {
-    @Test(timeOut = 5000) // time in mulliseconds
+    @Test(timeOut = 5000) // time in milliseconds
     public void testThisShouldPass() throws InterruptedException {
         Thread.sleep(4000);
     }

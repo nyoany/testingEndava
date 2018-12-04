@@ -1,4 +1,4 @@
-package tutorialsa;
+package tutorialsa_mvn;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package tutorialsa;
+package tutorialsa_mvn;
 
 
 public class MessageBuilder {

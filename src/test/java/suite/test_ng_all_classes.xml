@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestAll">
+<suite name="TestAllClasses">
 
     <test name="order">
         <classes>
@@ -17,3 +17,4 @@
     </test>
 
 </suite>
+

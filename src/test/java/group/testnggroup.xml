@@ -9,7 +9,7 @@
         </classes>
     </test>
 
-    <!-- Run test method on group "selenium" only -->
+
     <test name="selenium">
 
         <groups>

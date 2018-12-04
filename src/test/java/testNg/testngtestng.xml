@@ -1,9 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<!-- @BeforeSuite -->
 <suite name="TestAll">
 
-    <!-- @BeforeTest -->
     <test name="case1">
         <classes>
             <class name="testNg.TestConfiguration" />
@@ -11,16 +9,12 @@
             <class name="testNg.DBConfig" />
         </classes>
     </test>
-    <!-- @AfterTest -->
 
-    <!-- @BeforeTest -->
     <test name="case2">
         <classes>
             <class name="testNg.TestDBConnection" />
             <class name="testNg.DBConfig" />
         </classes>
     </test>
-    <!-- @AfterTest -->
 
 </suite>
-        <!-- @AfterSuite -->

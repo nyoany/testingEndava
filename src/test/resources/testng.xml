@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestAllClassesExercise3">
+
+    <test name="Exercise3">
+        <classes>
+            <class name="list.listSum" />
+            <class name="suite.TestDatabase" />
+            <!---/here you add all other classes you need -->
+        </classes>
+    </test>
+
+
+</suite>

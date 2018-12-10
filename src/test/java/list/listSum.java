@@ -10,6 +10,8 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.testng.Assert.assertEquals;
+
 public class listSum {
 
     @Test
@@ -21,7 +23,7 @@ public class listSum {
         int suma = list.get(0)+list.get(1)+list.get(2);
         System.out.print ("Suma numerelor din array este: "+ suma);
         System.out.println();
-        Assert.assertEquals(suma, 18); // verific ca suma e corecta
+        assertEquals(suma, 18); // verific ca suma e corecta
         for(int i=0; i<list.size(); i++){
             if (list.get(i)%3==0)
             {
@@ -31,7 +33,8 @@ public class listSum {
             else {
                 System.out.println("numarul de pe pozitia " + i+ " din array, adica numarul "+ list.get(i) + ", NU este divizibil cu 3");
                 }
-            Assert.assertEquals( list.get(i)%3, 0);
+
+                assertEquals( list.get(i)%3, 0);
         }
 
     }

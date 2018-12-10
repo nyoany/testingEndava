@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Parallel tests" parallel="tests" thread-count="2" >
+        <test name="1Test_SuitePackage">
+            <packages>
+                <package name="suite.*" />
+            </packages>
+        </test>
+</suite>

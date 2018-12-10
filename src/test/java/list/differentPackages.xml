@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="DifferentPackages">
+
+    <test name="1Test_SuitePackage">
+        <packages>
+            <package name="suite.*" />
+        </packages>
+    </test>
+
+    <test name="2Test_ParameterPackage">
+        <packages>
+            <package name="list.*" />
+        </packages>
+    </test>
+
+</suite>

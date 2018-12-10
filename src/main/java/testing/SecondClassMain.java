@@ -2,7 +2,7 @@ package testing;
 
 import org.testng.annotations.Test;
 
-public class SecondClass
+public class SecondClassMain
 {
     int number = 1;
     char character = 'a';

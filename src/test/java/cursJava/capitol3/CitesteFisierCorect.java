@@ -3,7 +3,7 @@ package cursJava.capitol3;
 import java.io.*;
 import org.testng.annotations.Test;
 
-@Test
+@Test(groups= "capitol3")
 public class CitesteFisierCorect {
     public static void citesteFisierCorect(String fis)
     {

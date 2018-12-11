@@ -6,8 +6,10 @@ concatenarii este afisat pe ecran.
 //concatenare a 2 sau mai multe fluxuri
 */
 
-import java.io.*;
+import org.testng.annotations.Test;
 
+import java.io.*;
+@Test(groups= "capitol4")
 //concatenare 2 fisiere
 public class Concatenare {
     public static void main (String args[]) {

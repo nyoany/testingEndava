@@ -5,7 +5,8 @@ import org.testng.annotations.Test;
 import java.io.FileReader;
 
 
-@Test
+@Test(groups= "Capitol3")
+
 public class Exemplu {
     public static void main(String args[]) {
         int v[] = new int[10];

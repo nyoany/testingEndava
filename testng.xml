@@ -1,0 +1,14 @@
+<suite name="TestAllClasses">
+    <test name="Exercise3Tema">
+        <classes>
+            <class name="teme.tema2.exercitiul2.divizibileCu3"/>
+            <class name="teme.tema1.bulz"/>
+        </classes>
+
+        <packages>
+            <package name="src.test.java.teme.tema1" />
+            <package name="src.test.java.random.*" />
+        </packages>
+
+    </test>
+</suite>
